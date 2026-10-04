@@ -1,0 +1,9 @@
+{
+  "outputs": {
+    "E_T": {
+      "objective": "maximize",
+      "maxUncertainty": 5,
+      "confidence": 0.5
+    }
+  }
+}

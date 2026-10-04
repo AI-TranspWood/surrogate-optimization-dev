@@ -1,0 +1,10 @@
+{
+  "outputs": {
+    "E_T": {
+      "target": 10
+    },
+    "mu_LT": {
+      "target": 4
+    }
+  }
+}

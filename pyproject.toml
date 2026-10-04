@@ -1,0 +1,35 @@
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "AITW_material_optimization"
+dynamic = ["version"]
+description = "AITW: Surrogate-based optimization of biocomposite materials"
+readme = "README.md"
+requires-python = ">=3.10,<3.11"
+dependencies = [
+    "click",
+    "h5py",
+    "numpy==1.26.4",
+    "scipy==1.11.4",
+    "keras==2.10.0",
+    "tensorflow==2.10.0",
+    "tensorflow-probability==0.18.0",
+]
+
+[project.optional-dependencies]
+release = ["flit"]
+test = ["pytest"]
+
+[project.scripts]
+aitw-material-optimization = "aitw_material_optimization.cli:aitw_material_optimization"
+
+[tool.flit.module]
+name = "aitw_material_optimization"
+
+[tool.flit.sdist]
+exclude = ["data/", "input.json", "__pycache__/", ".pytest_cache/"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

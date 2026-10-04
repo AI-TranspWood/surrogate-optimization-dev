@@ -1,0 +1,13 @@
+{
+  "outputs": {
+    "E_T": {
+      "objective": "maximize",
+      "weight": 1,
+      "confidence": 0.5,
+      "maxUncertainty": 5
+    }
+  },
+  "inputWeights": {
+    "fiberVolumeFraction": 20
+  }
+}

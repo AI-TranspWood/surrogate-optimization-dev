@@ -1,0 +1,20 @@
+{
+  "fiberOrientationDistribution": 0,
+  "fiberAspectRatio": 1000,
+  "orientationConcentration": 20,
+  "microfibrilAngle": 12,
+  "lumenPorosity": 0.3,
+  "fiberVolumeFraction": "minimize",
+  "celluloseContent": 0.7,
+  "hemicelluloseContent": 0.18,
+  "ligninContent": 0.08,
+  "pectinContent": 0.04,
+  "extractivesContent": 0,
+  "ashContent": 0,
+  "celluloseCrystallinity": 0.52,
+  "matrixYoungsModulus": 1.89,
+  "matrixPoissonRatio": 0.43,
+  "airPorosity": 0.05,
+  "tangentialInterfaceCompliance": 1e-10,
+  "longitudinalInterfaceCompliance": 1e-10
+}

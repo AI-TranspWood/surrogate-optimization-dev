@@ -9,7 +9,7 @@ It does not require MATLAB or modify the surrogate project.
 
 ## Installation
 
-Python **3.10** is required by the pinned TensorFlow stack. A Conda environment can
+Python **>=3.10,<3.14** is required by the pinned TensorFlow stack. A Conda environment can
 be created as follows (run the installation commands in this repository):
 
 ```bash
@@ -18,19 +18,23 @@ conda activate aitw-material-optimization
 python -m pip install .
 ```
 
-Alternatively, use a Python 3.10 virtual environment:
+Alternatively, use a Python virtual environment:
 
 ```bash
-python3.10 -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install .
 ```
 
-The runtime versions are declared in `pyproject.toml` and `requirements.txt`.
-TensorFlow 2.10.0, Keras 2.10.0, TensorFlow Probability 0.18.0, NumPy 1.26.4,
-and SciPy 1.11.4 are pinned. TensorFlow uses an available supported GPU without
+The runtime versions are declared in `pyproject.toml`.
+TensorFlow uses an available supported GPU without
 requiring a separate optimization implementation; GPU drivers/runtime setup follows
 the installed TensorFlow distribution. CPU execution is also supported.
+
+> [!IMPORTANT]
+> Set the environment variable `TF_USE_LEGACY_KERAS=1` to make use of the legacy Keras API.
+> Newer versions of TensorFlow (>=2.16) use Keras 3 by default but tensorflow-probability is only compatible with
+> Keras 2.
 
 ## CLI
 

@@ -1,15 +1,14 @@
-import tensorflow as tf
-import numpy as np
+from abc import ABC, abstractmethod
+from typing import Any, Callable, List, Tuple, Union
 
-from keras.layers import Layer, Conv2D
+import numpy as np
+import tensorflow as tf
+
 from .base import LayerKAN
 from .dense import DenseKAN
 
-from typing import Tuple, List, Any, Union, Callable
-from abc import ABC, abstractmethod
 
-
-class ConvolutionKAN(Layer, LayerKAN):
+class ConvolutionKAN(tf.keras.layers.Layer, LayerKAN):
     @abstractmethod
     def __init__(self, 
         rank: int,

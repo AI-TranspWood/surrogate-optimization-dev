@@ -28,8 +28,9 @@ exts_list = [
             'download_filename': '%(software_commit)s.tar.gz',
             'filename': SOURCE_TAR_GZ
         }],
-        'click_autocomplete_bins': ['aitw-material-optimization'],
+        'testinstall': True,
         'runtest': 'pytest -sv --disable-warnings',
+        'click_autocomplete_bins': ['aitw-material-optimization'],
     }),
 ]
 

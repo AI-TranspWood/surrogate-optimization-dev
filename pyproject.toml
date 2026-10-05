@@ -20,7 +20,7 @@ dependencies = [
 
 [project.optional-dependencies]
 release = ["flit"]
-test = ["pytest"]
+tests = ["pytest"]
 
 [project.scripts]
 aitw-material-optimization = "aitw_material_optimization.cli:aitw_material_optimization"

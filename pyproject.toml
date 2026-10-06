@@ -7,20 +7,20 @@ name = "AITW_material_optimization"
 dynamic = ["version"]
 description = "AITW: Surrogate-based optimization of biocomposite materials"
 readme = "README.md"
-requires-python = ">=3.10,<3.11"
+requires-python = ">=3.10,<3.14"
 dependencies = [
     "click",
     "h5py",
-    "numpy==1.26.4",
-    "scipy==1.11.4",
-    "keras==2.10.0",
-    "tensorflow==2.10.0",
-    "tensorflow-probability==0.18.0",
+    "numpy",
+    "scipy",
+    "keras",
+    "tensorflow",
+    "tensorflow-probability[tf]",
 ]
 
 [project.optional-dependencies]
 release = ["flit"]
-test = ["pytest"]
+tests = ["pytest"]
 
 [project.scripts]
 aitw-material-optimization = "aitw_material_optimization.cli:aitw_material_optimization"

@@ -1,0 +1,43 @@
+easyblock = 'PythonBundle'
+
+name = 'ci-aitw_material_optimization'
+version = 'devel'
+versionsuffix = '-%(software_commit)s'
+
+homepage = 'https://www.ai-transpwood-project.eu/'
+description = """AI-TranspWood - Optimize microscopic biocomposite parameters using the bundled stiffness surrogate
+and batched differential evolution.
+"""
+
+toolchain = {'name': 'foss', 'version': '2023a'}
+
+dependencies = [
+    ('Python', '3.11.3'),
+    ('Python-bundle-PyPI', '2023.06'),
+    ('SciPy-bundle', '2023.07'),
+    ('h5py', '3.9.0'),
+    ('TensorFlow', '2.13.0'),
+    ('tensorflow-probability', '0.20.0'),
+]
+
+exts_list = [
+    (name, version, {
+        'modulename': 'aitw_material_optimization',
+        'source_urls': ['https://github.com/AI-TranspWood/surrogate-optimization-dev/archive'],
+        'sources': [{
+            'download_filename': '%(software_commit)s.tar.gz',
+            'filename': SOURCE_TAR_GZ
+        }],
+        'testinstall': True,
+        'runtest': 'pytest -sv --disable-warnings',
+        'click_autocomplete_bins': ['aitw-material-optimization'],
+    }),
+]
+
+sanity_check_commands = [
+    'aitw-material-optimization --help',
+]
+
+modextravars = {'TF_USE_LEGACY_KERAS': '1'}
+
+moduleclass = 'chem'

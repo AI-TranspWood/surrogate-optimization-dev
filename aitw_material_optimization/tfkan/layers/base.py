@@ -1,10 +1,10 @@
-import tensorflow as tf
-from keras.layers import Layer
-from ..ops.spline import calc_spline_values, fit_spline_coef
-from ..ops.grid import build_adaptive_grid
-
-from typing import Tuple, List, Any, Union, Callable
 from abc import ABC, abstractmethod
+from typing import Any, Callable, List, Tuple, Union
+
+import tensorflow as tf
+
+from ..ops.grid import build_adaptive_grid
+from ..ops.spline import calc_spline_values, fit_spline_coef
 
 
 class LayerKAN:

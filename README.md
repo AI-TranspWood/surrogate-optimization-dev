@@ -9,13 +9,32 @@ It does not require MATLAB or modify the surrogate project.
 
 ## Installation
 
+### From EESSI
+
+Check the [EESSI documentation](https://www.eessi.io/docs/available_software/detail/AITW-material_optimization) to see on which version of EESSI the package is available.
+
+Run on a [system with EESSI pre-installed](https://www.eessi.io/docs/systems/) or [install EESSI on your own system](https://www.eessi.io/docs/getting_access/native_installation/)
+
+Load the package from EESSI:
+
+```bash
+# Follow instructions of your system to initialize EESSI
+# For a local/native installation:
+# source /cvmfs/software.eessi.io/versions/2023.06/init/lmod/bash
+
+module load EESSI/2023.06  # Or the latest version that has the package available
+module load AITW-material_optimization
+```
+
+### From PyPI
+
 Python **>=3.10,<3.14** is required by the pinned TensorFlow stack. A Conda environment can
 be created as follows (run the installation commands in this repository):
 
 ```bash
 conda create -n aitw-material-optimization python=3.10 pip
 conda activate aitw-material-optimization
-python -m pip install .
+python -m pip install AITW_material_optimization
 ```
 
 Alternatively, use a Python virtual environment:
@@ -23,8 +42,14 @@ Alternatively, use a Python virtual environment:
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install .
+python -m pip install AITW_material_optimization
 ```
+
+### From source (development version)
+
+Download the source code and install it using pip.
+
+Follow the instructions above and replace the package name `AITW_material_optimization` with the path to the downloaded source code directory.
 
 The runtime versions are declared in `pyproject.toml`.
 TensorFlow uses an available supported GPU without

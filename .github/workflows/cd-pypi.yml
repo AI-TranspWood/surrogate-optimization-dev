@@ -1,0 +1,70 @@
+name: cd-pypi
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag to deploy
+        required: true
+        type: string
+      skip-testpypi:
+        description: Skip publishing to TestPyPI
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  pypi:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.tag || github.ref_name }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+            python-version: "3.14"
+
+      - name: Install Python dependencies
+        run: pip install flit
+
+      - name: Build and publish on test PyPI
+        if: ${{ !inputs.skip-testpypi }}
+        run: >
+          flit publish
+        env:
+          FLIT_INDEX_URL: https://test.pypi.org/legacy/
+          FLIT_USERNAME: __token__
+          FLIT_PASSWORD: ${{ secrets.TESTPYPI_KEY }}
+
+      - name: Get pypi version number
+        id: get_version
+        run: >
+          echo "VERSION=$(echo ${{ inputs.tag || github.ref_name }} | cut -c2- )" >> $GITHUB_OUTPUT
+
+      # This way the CD workflow will note fail if test PyPI is not updated yet
+      - name: Test install from TestPyPI
+        uses: nick-fields/retry@v2
+        with:
+          max_attempts: 6
+          retry_on: error
+          timeout_minutes: 15
+          command: >-
+            sleep 20 &&
+            pip install
+            --index-url https://test.pypi.org/simple/
+            --extra-index-url https://pypi.org/simple/
+            AITW_material_optimization==${{ steps.get_version.outputs.VERSION }}
+
+      - name: Build and publish on PyPI
+        run: >
+          flit publish
+        env:
+          FLIT_INDEX_URL: https://upload.pypi.org/legacy/
+          FLIT_USERNAME: __token__
+          FLIT_PASSWORD: ${{ secrets.PYPI_KEY }}
